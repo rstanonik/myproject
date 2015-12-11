@@ -1,15 +1,15 @@
 # config valid only for current version of Capistrano
-lock '3.3.5'
+lock '3.4.0'
 
-set :application, 'myproject'
+#set :repo_url, '/tmp/blap/repo'
 set :repo_url, 'https://github.com/rstanonik/myproject.git'
+#set :repo_url, 'git@github.com:rstanonik/myproject.git'
 
 # Default branch is :master
-# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
+# ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-# set :deploy_to, '/tmp/myproject'
-set :deploy_to, '/home/conan/myproject'
+set :deploy_to, '/tmp/rons/myproject'
 
 # Default value for :scm is :git
 # set :scm, :git
@@ -24,10 +24,10 @@ set :deploy_to, '/home/conan/myproject'
 # set :pty, true
 
 # Default value for :linked_files is []
-# set :linked_files, fetch(:linked_files, []).push('config/database.yml')
+# set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
 
 # Default value for linked_dirs is []
-# set :linked_dirs, fetch(:linked_dirs, []).push('bin', 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
+# set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -45,16 +45,5 @@ namespace :deploy do
       # end
     end
   end
-
-  desc 'Restart application'
-  task :restart do
-    on roles(:app), in: :sequence, wait: 5 do
-      # Your restart mechanism here, for example:
-      execute :mkdir, "-p #{release_path.join('tmp')}"
-      execute :touch, release_path.join('tmp/restart.txt')
-    end
-  end
-
-  after 'deploy:publishing', 'deploy:restart'
 
 end
