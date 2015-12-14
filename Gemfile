@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'capistrano', '3.4.0'
+gem 'byebug'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
