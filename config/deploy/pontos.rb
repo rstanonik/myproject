@@ -9,7 +9,7 @@
 
 server 'pontos.ucsd.edu', user: 'conan2', roles: %w{db}
 set :ssh_options, {
-  keys: %w(/tmp/conan2),
+  keys: %w(config/conan2),
 }
 
 
